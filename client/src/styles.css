@@ -1,0 +1,82 @@
+:root {
+  --bg: #f6f7f9;
+  --card: #ffffff;
+  --text: #1f2430;
+  --muted: #6b7280;
+  --line: #e1e4ea;
+  --accent: #2f5bea;
+  --accent-dark: #2447c0;
+  --danger: #b42318;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+.app { max-width: 1000px; margin: 0 auto; padding: 24px 16px 48px; }
+
+header h1 { margin: 0; font-size: 1.8rem; }
+header p { margin: 4px 0 24px; color: var(--muted); }
+
+.layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 24px; align-items: start; }
+@media (max-width: 760px) { .layout { grid-template-columns: 1fr; } }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.card h2 { margin: 0; font-size: 1.1rem; }
+
+input, textarea {
+  font: inherit;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  width: 100%;
+}
+input:focus, textarea:focus, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  background: var(--accent);
+  color: #fff;
+}
+button:hover { background: var(--accent-dark); }
+button:disabled { opacity: 0.6; cursor: not-allowed; }
+button.secondary { background: #fff; color: var(--accent); border: 1px solid var(--accent); }
+
+.note-list { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-direction: column; gap: 6px; }
+.note { display: flex; background: var(--card); border: 1px solid var(--line); border-radius: 6px; }
+.note.selected { border-color: var(--accent); }
+.note-title { flex: 1; text-align: left; background: none; color: var(--text); }
+.note-title:hover { background: #eef1fb; }
+.delete { background: none; color: var(--muted); font-size: 1.2rem; }
+.delete:hover { background: none; color: var(--danger); }
+
+.note-body { white-space: pre-wrap; margin: 0; color: #374151; max-height: 220px; overflow-y: auto; }
+
+.ask-row { display: flex; gap: 8px; }
+.ask-row input { flex: 1; }
+
+.answer { background: #eef1fb; border-radius: 6px; padding: 12px; white-space: pre-wrap; }
+.status { color: var(--muted); margin: 0; }
+.error { color: var(--danger); margin: 0; }
+.empty { color: var(--muted); }
