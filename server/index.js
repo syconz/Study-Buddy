@@ -2,6 +2,7 @@
 // It sets up Express, connects to MongoDB, and wires up the two route files.
 
 require("dotenv").config();
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -16,6 +17,11 @@ app.use(express.json());  // lets us read JSON sent in request bodies
 
 app.use("/api/notes", notesRoutes); // save / list / delete notes
 app.use("/api/ask", askRoutes);     // ask the AI about a note
+// In production, serve the built React app from this same server
+app.use(express.static(path.join(__dirname, "../client/dist")));
+app.get("*", (req, res) => {
+res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
 
 const PORT = process.env.PORT || 5000;
 
